@@ -1,0 +1,337 @@
+:root {
+  --black: #000;
+  --shadow: #0004;
+  --white: #fff;
+  --default: #eee;
+  --cinza: #eee4;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-family: "Ubuntu", sans-serif;
+}
+
+body {
+  background-color: var(--black);
+  color: var(--default);
+  font-size: 18px;
+}
+
+header {
+  width: 80%;
+  height: 50px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+
+header a {
+  color: var(--default);
+  margin: 40px;
+  font-weight: 300;
+}
+
+.container {
+  height: 100vh;
+  width: 100vw;
+  margin-top: -50px;
+  overflow: hidden;
+}
+
+.container .list .list-item {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+
+.container .list .list-item img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  filter: brightness(50%);
+}
+
+.container .list .list-item .content {
+  position: absolute;
+  top: 20%;
+  right: 10%;
+  padding-right: 30%;
+  width: 80%;
+  color: var(--default);
+  text-shadow: 0 5px 10px var(--shadow);
+}
+
+.container .list .list-item .title {
+  font-size: 5em;
+  font-weight: 700;
+  line-height: 1.3em;
+}
+
+.container .list .list-item .description {
+  font-size: 1.5em;
+}
+
+.container .list .list-item .buttons {
+  display: grid;
+  grid-template-columns: repeat(2, 130px);
+  grid-template-rows: 40px;
+  margin-top: 20px;
+  gap: 5px;
+}
+
+.container .list .list-item .buttons button {
+  border: none;
+  background-color: var(--default);
+  letter-spacing: 3px;
+  font-weight: 500;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
+.container .list .list-item .buttons button:hover {
+  background-color: transparent;
+  border: 1px solid var(--default);
+  color: var(--default);
+  transition: 0.7s;
+}
+
+.container .list .list-item .buttons button:nth-child(2) {
+  background-color: transparent;
+  border: 1px solid var(--default);
+  color: var(--default);
+}
+
+.container .list .list-item .buttons button:nth-child(2):hover {
+  background-color: var(--default);
+  color: var(--black);
+}
+
+.container .thumb {
+  position: absolute;
+  bottom: 50px;
+  left: 50%;
+  display: flex;
+  gap: 20px;
+}
+
+.container .thumb .thumb-item {
+  width: 135px;
+  height: 200px;
+  position: relative;
+  z-index: 3;
+}
+
+.container .thumb .thumb-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+  filter: brightness(80%);
+}
+
+.container .thumb .content {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+}
+
+.container .arrows {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  position: absolute;
+  bottom: 120px;
+  left: 120px;
+  width: 300px;
+}
+
+.container .arrows button {
+  border-radius: 10px;
+  border: none;
+  padding: 12px 17px;
+  background-color: var(--cinza);
+  color: var(--default);
+  cursor: pointer;
+  font-weight: 300;
+  font-size: 1.5em;
+}
+
+.container .arrows button:hover {
+  background-color: var(--white);
+  color: var(--black);
+  transition: 0.7s;
+}
+
+.container.next .thumb {
+  animation: effectNextThumb 0.5s linear 1 forwards;
+}
+
+@keyframes effectNextThumb {
+  from {
+    transform: translateX(150px);
+  }
+}
+
+.container.next .thumb .thumb-item:nth-last-child(1) {
+  animation: effectLastThumb 0.5s linear 1 forwards;
+}
+
+@keyframes effectLastThumb {
+  from {
+    width: 0;
+    opacity: 0;
+  }
+}
+
+
+.container .list .list-item:nth-last-child(1) .content .title,
+.container .list .list-item:nth-last-child(1) .content .description,
+.container .list .list-item:nth-last-child(1) .content .buttons {
+  transform: translateY(50px);
+  filter: blur(20px);
+  opacity: 0;
+  animation: showContent 0.5s linear 1 forwards;
+}
+
+@keyframes showContent {
+  to {
+    transform: translateY(0);
+    filter: blur(0);
+    opacity: 1;
+  }
+}
+
+.container .list .list-item:nth-last-child(1) .content .title {
+  animation-delay: .2s;
+}
+
+.container .list .list-item:nth-last-child(1) .content .description {
+  animation-delay: .4s;
+}
+
+.container .list .list-item:nth-last-child(1) .content .buttons {
+  animation-delay: .6s;
+}
+
+.container.next .list .list-item:nth-last-child(1) img {
+  width: 150px;
+  height: 220px;
+  position: absolute;
+  bottom: 50px;
+  left: 50%;
+  border-radius: 30px;
+  animation: showMainImage 0.5s linear 1 forwards;
+}
+
+@keyframes showMainImage {
+  to {
+    width: 100%;
+    height: 100%;
+    bottom: 0;
+    left: 0;
+    border-radius: 0;
+  }
+}
+
+.container.back .list .list-item:nth-child(1) img {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  animation: hideMainImage 0.5s linear 1 forwards;
+  z-index: 2;
+}
+
+@keyframes hideMainImage {
+  to {
+    width: 135px;
+    height: 200px;
+    border-radius: 10px;
+    left: 50%;
+    bottom: 50px;
+  }
+}
+
+/* ======================================================= */
+/* =============== MEDIA QUERIES RESPONSIVAS =============== */
+/* ======================================================= */
+
+/* ---- Layout para Tablets e Desktops Menores ---- */
+@media screen and (max-width: 1024px) {
+  .container .list .list-item .content {
+    right: 5%;
+    padding-right: 20%;
+  }
+
+  .container .arrows {
+    left: 5%;
+  }
+
+  .container .list .list-item .title {
+    font-size: 4em;
+  }
+
+  .container .list .list-item .description {
+    font-size: 1.2em;
+  }
+}
+
+/* ---- Layout para Celulares ---- */
+@media screen and (max-width: 768px) {
+  header {
+    width: 90%;
+  }
+
+  header a {
+    margin: 0 10px;
+    font-size: 0.9em;
+  }
+
+  .container .list .list-item .content {
+    top: auto;
+    bottom: 80px;
+    left: 5%;
+    right: 5%;
+    width: 90%;
+    padding-right: 0;
+    text-align: center;
+  }
+
+  .container .list .list-item .title {
+    font-size: 2.5em;
+  }
+
+  .container .list .list-item .description {
+    font-size: 1em;
+    max-width: 100%; /* Garante que a descrição não exceda a largura */
+  }
+
+  .container .list .list-item .buttons {
+    margin: 20px auto 0; /* Centraliza os botões */
+    justify-content: center;
+  }
+  
+  .container .thumb {
+    display: none; /* Oculta as miniaturas em telas pequenas */
+  }
+
+  .container .arrows {
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: auto;
+  }
+
+  /* Ajusta a animação para não depender dos thumbnails que agora estão ocultos */
+  .container.back .list .list-item:nth-child(1) img {
+    animation: none; /* Desativa a animação de encolher a imagem */
+  }
+
+  .container.next .list .list-item:nth-last-child(1) img {
+    animation: none; /* Desativa a animação de crescer a imagem */
+  }
+}
